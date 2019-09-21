@@ -1,0 +1,22 @@
+{
+  "name": "m3bi",
+  "version": "1.0.0",
+  "description": "assessment-test m3bi",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --recursive --exit"
+  },
+  "author": "satyendra Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^5.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "sinon": "^7.4.2",
+    "supertest": "^4.0.2"
+  }
+}

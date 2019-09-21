@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Marriot",
+        "price": 10000,
+        "location": "Mumbai"
+    },
+    {
+        "name": "The Leela",
+        "price": 50000,
+        "location": "Mumbai"
+    },
+    {
+        "name": "Taj",
+        "price": 20000,
+        "location": "Mumbai"
+    },
+    {
+        "name": "Oberoi",
+        "price": 5000,
+        "location": "Mumbai"
+    },
+    {
+        "name": "Oyo Rooms",
+        "price": 1000,
+        "location": "Mumbai"
+    }
+]
