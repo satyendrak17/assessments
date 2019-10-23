@@ -80,7 +80,86 @@ function getAllUsers (req, res) {
 
 }
 
+function updateUser (req, res) {
+    const userEmail = req.body.email;
+    let existingData = JSON.parse(fs.readFileSync('data.json'));
+    if (existingData && existingData.length > 0) {
+        for (let indx = 0; indx < existingData.length; indx++) {
+            let tObj = existingData[indx];
+            if (userEmail === tObj.email) {
+                tObj.firstName = req.body.firstName;
+            }
+            existingData[indx] = tObj;
+        }
+    } else {
+        respData = {
+            message : 'No record found to be updated',
+            success_data : '',
+            error_data: 'Error'
+        };
+        res.status(404).json(respData);
+        return;
+    }
+
+    commonService.writeToJson(existingData, 'data.json', {})
+    .then ( data => {
+        respData = {
+            message : 'Data updated successfully',
+            success_data : data
+        };
+        res.status(200).json(respData);
+    })
+    .catch (err => {
+        respData =  {
+            'message' : 'Data could not be updated!',
+            'error_data' : err
+        };
+        res.status(500).json(respData);
+        return;
+    });
+}
+
+function deleteUser (req, res ) {
+    const userEmail = req.body.email;
+    let existingData = JSON.parse(fs.readFileSync('data.json'));
+    if (existingData && existingData.length > 0) {
+        for (let indx = 0; indx < existingData.length; indx++) {
+            let tObj = existingData[indx];
+            if (userEmail === tObj.email) {
+                existingData.splice(indx, 1);
+            }
+        }
+    } else {
+        respData = {
+            message : 'No record found to be deleted',
+            success_data : '',
+            error_data: 'Error'
+        };
+        res.status(404).json(respData);
+        return;
+    }
+
+    commonService.writeToJson(existingData, 'data.json', {})
+    .then ( data => {
+        respData = {
+            message : 'Data deleted successfully',
+            success_data : 'User deleted'
+        };
+        res.status(200).json(respData);
+    })
+    .catch (err => {
+        respData =  {
+            'message' : 'Data could not be deleted!',
+            'error_data' : error
+        };
+        res.status(500).json(respData);
+        return;
+    });
+}
+
 module.exports = {
     addUser: addUser,
-    getAllUsers: getAllUsers
+    getAllUsers: getAllUsers,
+    deleteUser: deleteUser,
+    updateUser: updateUser
 };

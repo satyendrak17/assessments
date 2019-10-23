@@ -30,7 +30,7 @@ function getAllUsers () {
                 reject (error);
             }
         });
-    } )
+    } );
 }
 
 module.exports = {
